@@ -1,0 +1,36 @@
+{
+  "name": "Husky Autonomous Inspection",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "runArgs": [
+    "--network=host",
+    "--ipc=host",
+    "--privileged",
+    "-e", "DISPLAY=${localEnv:DISPLAY}",
+    "-e", "XAUTHORITY=${localEnv:XAUTHORITY}",
+    "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "-v", "${localEnv:XAUTHORITY}:${localEnv:XAUTHORITY}:rw"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-iot.vscode-ros",
+        "twxs.cmake",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "redhat.vscode-yaml",
+        "xaver.clang-format"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "ros.distro": "jazzy"
+      }
+    }
+  },
+  "postCreateCommand": "mkdir -p /root/clearpath /etc/clearpath && ln -sf /workspaces/husky-autonomous-inspection/config/robot.yaml /root/clearpath/robot.yaml && ln -sf /workspaces/husky-autonomous-inspection/config/robot.yaml /etc/clearpath/robot.yaml && cd /ros2_ws && colcon build --symlink-install 2>/dev/null || true",
+  "remoteUser": "root"
+}
