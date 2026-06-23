@@ -15,3 +15,6 @@ config/platform-extras/
 build/
 install/
 log/
+
+# Generated maps
+maps/

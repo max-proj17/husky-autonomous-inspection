@@ -1,0 +1,12 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/workspaces/husky-autonomous-inspection/build/slam_mapping",
+        "/workspaces/husky-autonomous-inspection/install/slam_mapping/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/workspaces/husky-autonomous-inspection/build/slam_mapping",
+        "/workspaces/husky-autonomous-inspection/install/slam_mapping/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}
