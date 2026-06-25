@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-clearpath-gz \
     ros-jazzy-clearpath-manipulators \
     ros-jazzy-clearpath-nav2-demos \
+    ros-jazzy-pointcloud-to-laserscan \
     && rm -rf /var/lib/apt/lists/*
 
 # Initialize rosdep

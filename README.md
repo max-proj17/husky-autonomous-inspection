@@ -73,7 +73,8 @@ Hold a key to move; release it to stop. `W+A` / `W+D` combinations work simultan
 2. Click **Open connection** → WebSocket → `ws://localhost:8765`
 3. Add a **3D panel** and subscribe to:
    - `/map` — occupancy grid (updates as you drive)
-   - `/a200_0000/sensors/lidar2d_0/scan` — live LiDAR scan
+   - `/a200_0000/sensors/lidar3d_0/points` — live VLP-16 point cloud (360°)
+   - `/a200_0000/sensors/lidar3d_0/scan` — 2D laser scan fed into SLAM
 
 ---
 
@@ -106,10 +107,12 @@ Saves two files to `maps/`:
 ```
 Gazebo Harmonic
   └── Husky A200 (namespace: a200_0000)
-        ├── /a200_0000/cmd_vel          ← teleop input
-        └── /a200_0000/sensors/lidar2d_0/scan  ← SICK LMS1xx
-                └── SLAM Toolbox
-                      └── /map          → Foxglove Studio
+        ├── /a200_0000/cmd_vel                    ← teleop input
+        └── /a200_0000/sensors/lidar3d_0/points   ← Velodyne VLP-16 (360°)
+                └── pointcloud_to_laserscan
+                      └── /scan_3d
+                            └── SLAM Toolbox
+                                  └── /map        → Foxglove Studio
 ```
 
 Robot config lives in `config/robot.yaml` (Clearpath standard format). SLAM parameters are in `src/slam_mapping/config/slam_params.yaml`.
